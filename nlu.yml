@@ -1,0 +1,294 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - сайн уу
+      - сайн байна уу
+      - өглөөний мэнд
+      - өдрийн мэнд
+      - hello
+      - hi
+      - hey
+
+  - intent: goodbye
+    examples: |
+      - баяртай
+      - баяртай аа
+      - bye
+      - see you
+
+  - intent: ask_tuition
+    examples: |
+      - төлбөр бодоод өгөөч
+      - сургалтын төлбөрөө бодмоор байна
+      - хэд төлөх вэ
+      - төлөх төлбөрийг бодож өг
+      - tuition fee calculation
+      - calculate tuition
+
+  - intent: ask_gpa
+    examples: |
+      - голч бодоорой
+      - голчоо бодмоор байна
+      - gpa бодоод өг
+      - calculate gpa
+      - gpa calculation
+
+  - intent: inform
+    examples: |
+      - 12
+      - 18
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 19
+      - 20
+      - 21
+      - 0
+      - before_2024_2025
+      - 2024_2025
+      - 2025_2026
+      - ШИНЖЛЭХ УХААНЫ СУРГУУЛЬ
+      - БИЗНЕСИЙН СУРГУУЛЬ
+
+  - intent: choose_admission_before_2024_2025
+    examples: |
+      - 2024-2025 оноос өмнө
+      - өмнөх элсэгч
+      - before
+      - before 2024-2025
+
+  - intent: choose_admission_2024_2025
+    examples: |
+      - 2024-2025
+      - 2024 2025
+      - 2024 оны элсэгч
+      - 2024 intake
+
+  - intent: choose_admission_2025_2026
+    examples: |
+      - 2025-2026
+      - 2025 2026
+      - 2025 оны элсэгч
+      - 2025 intake
+
+  - intent: choose_faculty_science
+    examples: |
+      - Шинжлэх ухааны сургууль
+      - шинжлэх ухаан
+      - science school
+
+  - intent: choose_faculty_mtee
+    examples: |
+      - МТ, электроникийн сургууль
+      - мэдээллийн технологи, электроник
+      - ICT school
+
+  - intent: choose_faculty_engineering
+    examples: |
+      - Инженер, технологийн сургууль
+      - инженерийн сургууль
+      - engineering school
+
+  - intent: choose_faculty_business
+    examples: |
+      - Бизнесийн сургууль
+      - бизнес
+      - business school
+
+  - intent: choose_faculty_law
+    examples: |
+      - Хууль зүйн сургууль
+      - хууль
+      - law school
+
+  - intent: choose_faculty_politics
+    examples: |
+      - Улс төр судлал, ОУХ, Нийтийн удирдлагын сургууль
+      - улс төр судлал
+      - public administration school
+
+  - intent: choose_faculty_zavkhan
+    examples: |
+      - Завхан дахь БМТ сургууль
+      - Завхан сургууль
+      - Zavkhan campus
+
+  - intent: choose_faculty_east
+    examples: |
+      - Зүүн бүсийн сургууль
+      - зүүн сургууль
+      - east campus
+
+  - intent: choose_faculty_west
+    examples: |
+      - Баруун бүсийн сургууль
+      - баруун сургууль
+      - west campus
+
+  - intent: ask_location
+    examples: |
+      - байршлууд
+      - жагсаалт
+      - locations
+      - list
+      - [МУИС](place) хаана байдаг вэ
+      - [Монгол улсын их сургууль](place) хаана вэ
+      - [МУИС цахим номын сан](place) хаана вэ
+      - [цахим номын сан](place)
+      - [МУИС, хичээлийн 1-р байр](place)
+      - [МУИС, хичээлийн 2-р байр](place)
+      - [МУИС, хичээлийн 3-р байр](place)
+      - [МУИС, хичээлийн 4-р байр](place)
+      - [МУИС, хичээлийн 5-р байр](place)
+      - [МУИС, хичээлийн 7-р байр](place)
+      - [МУИС, хичээлийн 8-р байр](place)
+      - [1-р дотуур байр](place) хаана вэ
+      - [2-р дотуур байр](place)
+      - [3-р дотуур байр](place)
+      - [гадаад оюутны байр](place)
+      - [Багш оюутны хөгжлийн төв](place) хаана вэ
+      - [Нийгмийн шинжлэх ухааны сургууль](place) хаана вэ
+      - [Математик компьютерийн сургууль](place) хаана вэ
+      - [Бизнесийн сургууль](place) хаана вэ
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 2-р байр
+      - 4-р байр
+      - 5-р байр
+      - МУИС 2-р байр
+      - МУИС, 3-р байр
+      - МУИС 4-р байр
+      - МУИС 5-р байр
+
+  - intent: choose_place_type
+    examples: |
+      - хичээлийн байр
+      - хичээлийн
+      - хичээлийн байр гэж байна
+      - сургуулийн байр
+      - дотуур байр
+      - дотуур
+      - оюутны дотуур байр
+      - dorm
+
+  - intent: set_language
+    examples: |
+      - set language to english
+      - language english
+      - change language
+      - хэл англи болго
+      - хэл монгол болго
+      - монголоор
+      - english
+
+  - intent: affirm_mn
+    examples: |
+      - тийм
+      - Тийм
+      - тийм ээ
+      - yes
+
+  - intent: deny_mn
+    examples: |
+      - үгүй
+      - Үгүй
+      - үгүй ээ
+      - no
+
+  - intent: inform_number
+    examples: |
+      - [1](number)кр
+      - [2](number)кр
+      - [4](number)кр
+      - [2](number) кредит
+      - [3](number) кредит
+      - дүн [95](number)
+      - [80](number)%
+      - [100](number)
+      - [85](number)
+
+  - intent: ask_leave
+    examples: |
+      - чөлөө авах хүсэлт
+      - багшаасаа чөлөө асуух
+      - leave request
+
+  - intent: ask_absence
+    examples: |
+      - өвчтэй гэдгээ мэдэгдэх
+      - хичээлд орж чадахгүй
+      - absent today
+
+  - intent: ask_assignment_grade
+    examples: |
+      - даалгаврын дүн асуух
+      - assignment grade
+
+  - intent: ask_lab_grade
+    examples: |
+      - лабораторийн дүн
+      - lab result
+
+  - intent: ask_course_grade
+    examples: |
+      - хичээлийн дүн
+      - final grade
+
+  - intent: ask_w_i
+    examples: |
+      - W дүн тавиулах
+      - I дүн хүсэх
+      - request W grade
+
+  - synonym: МУИС, хичээлийн 1-р байр
+    examples: |
+      - муис хичээлийн 1-р байр
+      - muis academic building 1
+
+  - synonym: МУИС, хичээлийн 2-р байр
+    examples: |
+      - муис хичээлийн 2-р байр
+      - muis academic building 2
+
+  - synonym: МУИС, хичээлийн 3-р байр
+    examples: |
+      - муис хичээлийн 3-р байр
+      - muis academic building 3
+
+  - synonym: МУИС, хичээлийн 4-р байр
+    examples: |
+      - муис хичээлийн 4-р байр
+      - муис 4-р байр
+      - muis academic building 4
+
+  - synonym: МУИС, хичээлийн 5-р байр
+    examples: |
+      - муис хичээлийн 5-р байр
+      - муис 5-р байр
+      - muis academic building 5
+
+  - synonym: МУИС, хичээлийн 7-р байр
+    examples: |
+      - муис хичээлийн 7-р байр
+
+  - synonym: МУИС, хичээлийн 8-р байр
+    examples: |
+      - муис хичээлийн 8-р байр

@@ -1,0 +1,32 @@
+version: "3.1"
+
+language: "en"
+
+pipeline:
+- name: WhitespaceTokenizer
+- name: RegexFeaturizer
+- name: LexicalSyntacticFeaturizer
+- name: CountVectorsFeaturizer
+  OOV_token: "__oov__"
+- name: CountVectorsFeaturizer
+  analyzer: "char_wb"
+  min_ngram: 2
+  max_ngram: 5
+- name: DIETClassifier
+  epochs: 150
+  constrain_similarities: true
+- name: EntitySynonymMapper
+- name: FallbackClassifier
+  threshold: 0.6
+  ambiguity_threshold: 0.1
+
+policies:
+- name: MemoizationPolicy
+- name: RulePolicy
+  core_fallback_threshold: 0.6
+  core_fallback_action_name: "utter_fallback"
+  enable_fallback_prediction: true
+- name: TEDPolicy
+  max_history: 10
+  epochs: 50
+assistant_id: 20260129-190659-inventive-cheeseburger

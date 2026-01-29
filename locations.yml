@@ -1,0 +1,170 @@
+version: '1.0'
+places:
+  # ====== ХИЧЭЭЛИЙН БАЙР ======
+  - key: class_1
+    kind: class
+    number: 1
+    title: "МУИС, хичээлийн 1-р байр (Төв байр)"
+    url: "https://maps.app.goo.gl/NbuuD8T7q94dprqE9"
+    aliases:
+      - "МУИС, хичээлийн 1-р байр"
+      - "МУИС хичээлийн 1-р байр"
+      - "хичээлийн 1-р байр"
+      - "төв байр"
+      - "main building"
+      - "central building"
+
+  - key: class_2
+    kind: class
+    number: 2
+    title: "МУИС, хичээлийн 2-р байр (Нийгмийн шинжлэх ухааны сургууль)"
+    url: "https://maps.app.goo.gl/Cuq2TbqNAsmswzybA"
+    aliases:
+      - "МУИС, хичээлийн 2-р байр"
+      - "МУИС хичээлийн 2-р байр"
+      - "хичээлийн 2-р байр"
+      - "Нийгмийн шинжлэх ухааны сургууль"
+
+  - key: class_3
+    kind: class
+    number: 3
+    title: "МУИС, хичээлийн 3-р байр (Математик компьютерийн сургууль)"
+    # TODO: энд Google Maps линкээ тавиарай
+    url: "https://maps.app.goo.gl/Q4yQ12pFAiJXHWoT9"
+    aliases:
+      - "МУИС, хичээлийн 3-р байр"
+      - "МУИС хичээлийн 3-р байр"
+      - "хичээлийн 3-р байр"
+      - "Математик компьютерийн сургууль"
+      - "МУИС, 3-р байр"
+      - "3-р байр"
+
+  # ✅ ADDED: Хичээлийн 4-р байр
+  - key: class_4
+    kind: class
+    number: 4
+    title: "МУИС, хичээлийн 4-р байр"
+    url: "https://maps.app.goo.gl/bbW4L74h2kgKmnhC8"
+    aliases:
+      - "МУИС, хичээлийн 4-р байр"
+      - "МУИС хичээлийн 4-р байр"
+      - "МУИС-ийн хичээлийн 4-р байр"
+      - "хичээлийн 4-р байр"
+      - "МУИС, 4-р байр"
+      - "МУИС 4-р байр"
+      - "4-р байр"
+
+  # ✅ ADDED: Хичээлийн 5-р байр
+  - key: class_5
+    kind: class
+    number: 5
+    title: "МУИС, хичээлийн 5-р байр"
+    # Google Maps (lat,lon): 47.9255, 106.92179
+    url: "https://maps.app.goo.gl/MEyUXr6MzYYpexMJA"
+    aliases:
+      - "МУИС, хичээлийн 5-р байр"
+      - "МУИС хичээлийн 5-р байр"
+      - "МУИС-ийн 5-р байр"
+      - "МУИС 5-р байр"
+      - "хичээлийн 5-р байр"
+      - "МУИС, 5-р байр"
+      - "5-р байр"
+
+  - key: class_7
+    kind: class
+    number: 7
+    title: "МУИС, хичээлийн 7-р байр"
+    url: "https://maps.app.goo.gl/9sUPzeBW8igXftuW6"
+    aliases:
+      - "МУИС, хичээлийн 7-р байр"
+      - "МУИС хичээлийн 7-р байр"
+      - "хичээлийн 7-р байр"
+      - "МУИС, 7-р байр"
+      - "7-р байр"
+
+  - key: class_8
+    kind: class
+    number: 8
+    title: "МУИС, хичээлийн 8-р байр"
+    url: "https://maps.app.goo.gl/AsXQcy5aVogz29GYA"
+    aliases:
+      - "МУИС, хичээлийн 8-р байр"
+      - "МУИС хичээлийн 8-р байр"
+      - "хичээлийн 8-р байр"
+      - "МУИС, 8-р байр"
+      - "8-р байр"
+
+  # ====== ДОТУУР БАЙР (TODO: линкүүдээ нэмээрэй) ======
+  - key: dorm_1
+    kind: dorm
+    number: 1
+    title: "1-р дотуур байр"
+    url: "https://maps.app.goo.gl/stZdWFcq5CpGTamp6"
+    aliases:
+      - "1-р дотуур байр"
+      - "дотуур байр 1"
+      - "дотуур 1"
+      - "dorm 1"
+
+  - key: dorm_2
+    kind: dorm
+    number: 2
+    title: "2-р дотуур байр"
+    url: "https://maps.app.goo.gl/ReE9bFeXHZwSu33c7"
+    aliases:
+      - "2-р дотуур байр"
+      - "дотуур байр 2"
+      - "дотуур 2"
+      - "dorm 2"
+
+  - key: dorm_3
+    kind: dorm
+    number: 3
+    title: "3-р дотуур байр"
+    url: "https://maps.app.goo.gl/xWYBVExbWfFtoQBe7"
+    aliases:
+      - "3-р дотуур байр"
+      - "дотуур байр 3"
+      - "дотуур 3"
+      - "dorm 3"
+
+
+  - key: dorm_5
+    kind: dorm
+    number: 5
+    title: "5-р дотуур байр"
+    url: "https://maps.app.goo.gl/hj8knFyGieQgP3Kx9"
+    aliases:
+      - "5-р дотуур байр"
+      - "дотуур байр 5"
+      - "дотуур 5"
+      - "dorm 5"
+
+  - key: dorm_6
+    kind: dorm
+    number: 6
+    title: "6-р дотуур байр"
+    url: "https://maps.app.goo.gl/wqG9CpxL1hEqD8857"
+    aliases:
+      - "6-р дотуур байр"
+      - "дотуур байр 6"
+      - "дотуур 6"
+      - "dorm 6"
+
+  - key: dorm_international
+    kind: dorm
+    title: "Гадаад оюутны байр"
+    url: "https://maps.app.goo.gl/iJ9i9t5dddwKXSYZ9"
+    aliases:
+      - "гадаад оюутны байр"
+      - "international dorm"
+
+  # ====== БУСАД ======
+  - key: digital_library
+    kind: other
+    title: "МУИС цахим номын сан"
+    url: "https://maps.app.goo.gl/ZSGXoKerMjsJB8jVA"
+    aliases:
+      - "МУИС цахим номын сан"
+      - "цахим номын сан"
+      - "digital library"

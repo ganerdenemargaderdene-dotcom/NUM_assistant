@@ -1,0 +1,409 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - ask_tuition
+  - ask_gpa
+  - inform
+  - choose_admission_before_2024_2025
+  - choose_admission_2024_2025
+  - choose_admission_2025_2026
+  - choose_faculty_science
+  - choose_faculty_mtee
+  - choose_faculty_engineering
+  - choose_faculty_business
+  - choose_faculty_law
+  - choose_faculty_politics
+  - choose_faculty_zavkhan
+  - choose_faculty_east
+  - choose_faculty_west
+  - ask_location
+  - choose_place_type
+  - set_language
+  - affirm_mn
+  - deny_mn
+  - inform_number
+  - ask_leave
+  - ask_absence
+  - ask_assignment_grade
+  - ask_lab_grade
+  - ask_course_grade
+  - ask_w_i
+
+entities:
+  - admission_group
+  - faculty
+  - place
+  - language
+  - number
+
+slots:
+  admission_group:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+        conditions:
+          - active_loop: tuition_form
+            requested_slot: admission_group
+
+  faculty:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+        conditions:
+          - active_loop: tuition_form
+            requested_slot: faculty
+
+  general_credits:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: tuition_form
+            requested_slot: general_credits
+
+  major_credits:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: tuition_form
+            requested_slot: major_credits
+
+  number_of_courses:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: number
+        conditions:
+          - active_loop: gpa_form
+            requested_slot: number_of_courses
+
+  current_course_index:
+    type: float
+    influence_conversation: false
+    initial_value: 1
+    mappings:
+      - type: custom
+
+  current_credit:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: number
+        conditions:
+          - active_loop: gpa_form
+            requested_slot: current_credit
+
+  current_score:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: number
+        conditions:
+          - active_loop: gpa_form
+            requested_slot: current_score
+
+  courses:
+    type: any
+    influence_conversation: false
+    initial_value: []
+    mappings:
+      - type: custom
+
+  place:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: place
+
+  language:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: language
+        intent: set_language
+
+  pending_number:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  place_type:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+forms:
+  tuition_form:
+    required_slots:
+      - admission_group
+      - faculty
+      - general_credits
+      - major_credits
+
+  gpa_form:
+    required_slots:
+      - number_of_courses
+      - current_credit
+      - current_score
+
+responses:
+  utter_greet:
+    - text: |
+        Сайн байна уу 👋
+        Би МУИС-ийн оюутнуудад зориулсан туслах бот байна.
+
+        Та дараах үйлчилгээнүүдийг ашиглаж болно:
+        • Сургалтын төлбөр тооцоолох
+        • GPA (голч) бодох
+        • МУИС-ийн байр, төвүүдийн байршил асуух
+        • Албан бичгийн загвар (чөлөө, өвчтэй, дүн асуух, W/I хүсэлт)
+
+        Хэрвээ аль нэгийг ашиглах бол:
+        • “төлбөр бодоорой”
+        • “голч бодъё”
+        • “байршлууд” эсвэл “МУИС, хичээлийн 2-р байр”
+        • “чөлөө авах хүсэлт” гэх мэтээр бичээрэй.
+
+        You can ask in Mongolian or English.
+
+  utter_goodbye:
+    - text: |
+        Амжилт хүсье 😊
+        Дахиад хэрэгтэй бол anytime асуугаарай.
+
+  utter_fallback:
+    - text: |
+        Уучлаарай, ойлгосонгүй. 
+        Жишээ нь “төлбөр бодоорой”, “голч бодъё”, “байршлууд” гэж бичээрэй.
+
+  utter_ask_admission_group:
+    - text: "Та хэдэн оны элсэгч вэ?"
+      buttons:
+        - title: "2024–2025 оноос өмнө элсэгч"
+          payload: /choose_admission_before_2024_2025
+        - title: "2024–2025 оны элсэгч"
+          payload: /choose_admission_2024_2025
+        - title: "2025–2026 оны элсэгч"
+          payload: /choose_admission_2025_2026
+
+  utter_ask_faculty:
+    - text: "Та аль бүрэлдэхүүн/салбар сургуульд суралцаж байна вэ?"
+      buttons:
+        - title: "Шинжлэх ухааны сургууль"
+          payload: /choose_faculty_science
+        - title: "МТ, электроникийн сургууль"
+          payload: /choose_faculty_mtee
+        - title: "Инженер, технологийн сургууль"
+          payload: /choose_faculty_engineering
+        - title: "Бизнесийн сургууль"
+          payload: /choose_faculty_business
+        - title: "Хууль зүйн сургууль"
+          payload: /choose_faculty_law
+        - title: "Улс төр судлал/ОУХ/Нийтийн удирдлага"
+          payload: /choose_faculty_politics
+        - title: "Завхан дахь БМТ сургууль"
+          payload: /choose_faculty_zavkhan
+        - title: "Зүүн бүсийн сургууль"
+          payload: /choose_faculty_east
+        - title: "Баруун бүсийн сургууль"
+          payload: /choose_faculty_west
+
+  utter_ask_general_credits:
+    - text: "Ерөнхий суурь хичээлээс хэдэн кредит үзэж байна вэ? (тоо оруулна уу)"
+
+  utter_ask_major_credits:
+    - text: "Мэргэжлийн суурь/мэргэших хичээлээс хэдэн кредит үзэж байна вэ? (тоо оруулна уу)"
+
+  utter_submit:
+    - text: "Тооцоолж байна..."
+
+  utter_deny:
+    - text: "За ойлголоо. Дараа голч бодмоор бол ‘тийм’ эсвэл ‘голч бодъё’ гэж бичээрэй."
+
+  utter_ask_number_of_courses:
+    - text: "Та хэдэн хичээл үзсэн бэ?"
+
+  utter_ask_place_type:
+    - text: |
+        МУИС-ийн **хичээлийн байр** уу эсвэл **дотуур байр** уу?
+        (Ж: “хичээлийн байр” эсвэл “дотуур байр” гэж хариулаарай.)
+
+  utter_language_set:
+    - text: "OK ✅ Language set."
+
+  utter_ask_leave:
+    - text: |
+        📌 **Чөлөө авах хүсэлт – Монгол (албаны хэл)**
+
+        Сайн байна уу, багш аа.
+        Миний нэр [Таны нэр], [Оюутны код], [Хичээлийн нэр] хичээлийг судалж буй оюутан байна.
+        Би [огноо]-нд хувийн шалтгааны улмаас хичээлд сууж чадахгүй тул тухайн өдрийн хичээлээс чөлөө авахыг албан ёсоор хүсэж байна.
+        Хичээлийн хоцрогдлыг нөхөхийн тулд шаардлагатай материал, даалгаврыг өөрийн санаачилгаар бүрэн гүйцэтгэх болно.
+        Хүсэлтийг минь хүлээн авч, зөвшөөрнө үү.
+        Хүндэтгэсэн,
+        [Овог нэр]
+        [Анги, курс]
+
+        ----------------------------
+
+        📌 **Leave Request – English (Formal / Academic)**
+
+        Dear Professor,
+        My name is [Your Name], a student of the course [Course Name], student ID [Student ID].
+        I am writing to formally request permission to be absent from class on [date] due to personal reasons.
+        I will take full responsibility for making up any missed lectures, materials, or assignments related to this absence.
+        I kindly ask for your understanding and approval.
+        Sincerely,
+        [Your Full Name]
+        [Department, Year]
+
+  utter_ask_absence:
+    - text: |
+        📌 **Өвчтэй / ирж чадахгүй мэдэгдэх (Монгол)**
+
+        Сайн байна уу, багш аа.
+        Миний нэр [Таны нэр], [Оюутны код], [Хичээлийн нэр] хичээлийг судалж буй оюутан байна.
+        Би [огноо]-нд өвчний улмаас хичээлд сууж чадахгүйг албан ёсоор мэдэгдэж байна.
+        Хичээлийн хоцрогдлыг нөхөхийн тулд шаардлагатай материал, даалгаврыг би гүйцэтгэх болно.
+        Хүсэлтийг минь хүлээн авч ойлгоно уу.
+        Хүндэтгэсэн,
+        [Овог нэр]
+
+        ----------------------------
+
+        📌 **Notice of Absence – English**
+
+        Dear Professor,
+        My name is [Your Name], student ID [Student ID], enrolled in [Course Name].
+        I am writing to inform you that I will be unable to attend class on [date] due to illness.
+        I will complete any missed materials and assignments as required.
+        Thank you for your understanding.
+        Sincerely,
+        [Your Full Name]
+
+  utter_ask_assignment_grade:
+    - text: |
+        📌 **Даалгаврын дүн асуух (Монгол)**
+
+        Сайн байна уу, багш аа.
+        Миний нэр [Таны нэр], [Оюутны код], [Хичээлийн нэр] хичээлийг судалж буй оюутан байна.
+        Хичээлийн явцад гүйцэтгэсэн даалгавар болон ажлын үнэлгээ, нийт дүнгийн талаар тодруулах хүсэлтэй байна.
+        Хэрэв боломжтой бол миний гүйцэтгэсэн ажлуудын үнэлгээ болон нийт дүнгийн мэдээллийг илгээж өгнө үү.
+        Баярлалаа.
+        Хүндэтгэсэн,
+        [Овог нэр]
+
+        ----------------------------
+
+        📌 **Assignment Grade Inquiry – English**
+
+        Dear Professor,
+        I am [Your Name], student ID [Student ID], enrolled in [Course Name].
+        I would like to inquire about my assignment scores and overall grade status.
+        If possible, please share the evaluation results for my submitted work.
+        Thank you.
+        Sincerely,
+        [Your Full Name]
+
+  utter_ask_lab_grade:
+    - text: |
+        📌 **Лабораторийн ажлын дүн асуух (Монгол)**
+
+        Сайн байна уу, багш аа.
+        [Хичээлийн нэр]-ийн лабораторийн ажлын дүнгийн талаар мэдээлэл өгөх боломжтой юу?
+        Урьдчилан баярлалаа.
+        [Таны нэр]
+        [Оюутны код]
+
+        ----------------------------
+
+        📌 **Lab Grade Inquiry – English**
+
+        Dear Professor,
+        Could you please share the lab results for [Course Name]?
+        Thank you in advance.
+        Sincerely,
+        [Your Full Name]
+        [Student ID]
+
+  utter_ask_course_grade:
+    - text: |
+        📌 **Хичээлийн дүн асуух (Монгол)**
+
+        Сайн байна уу, багш аа.
+        Энэ улирлын [Хичээлийн нэр]-ийн эцсийн дүн гарсан эсэхийг лавлах гэсэн юм.
+        Баярлалаа.
+
+        ----------------------------
+
+        📌 **Final Grade Inquiry – English**
+
+        Dear Professor,
+        I would like to ask whether the final grade for [Course Name] has been released.
+        Thank you.
+
+  utter_ask_w_i:
+    - text: |
+        📌 **W / I дүн хүсэх (Монгол)**
+
+        Сайн байна уу, багш аа.
+        Миний нэр [Таны нэр], [Оюутны код], [Хичээлийн нэр] хичээлийг судалж буй оюутан байна.
+        Би [шалтгаан: өвчний улмаас, хувийн нөхцөл гэх мэт] шалтгааны улмаас хичээлд бүрэн оролцож чадаагүй тул
+        W (Withdraw), I (Incomplete) үнэлгээ тавиулахыг албан ёсоор хүсэж байна.
+        Хэрэв шаардлагатай бол нотлох баримт (эмнэлгийн тодорхойлолт, албан бичиг) хавсаргаж болно.
+        Хүсэлтийг минь хүлээн авч шийдвэрлэнэ үү.
+        Хүндэтгэсэн,
+        [Таны нэр]
+        [Оюутны код]
+
+        ----------------------------
+
+        📌 **Request for W / I Grade – English**
+
+        Dear Professor,
+        I am [Your Name], student ID [Student ID], enrolled in [Course Name].
+        Due to [reason], I was unable to fully attend the course and would like to request a W (Withdraw) or I (Incomplete) grade.
+        I can provide supporting documents if needed.
+        Thank you for your consideration.
+        Sincerely,
+        [Your Full Name]
+        [Student ID]
+
+actions:
+  - validate_tuition_form
+  - action_calculate_tuition
+  - action_set_admission_group_before_2024_2025
+  - action_set_admission_group_2024_2025
+  - action_set_admission_group_2025_2026
+  - action_set_faculty_science
+  - action_set_faculty_mtee
+  - action_set_faculty_engineering
+  - action_set_faculty_business
+  - action_set_faculty_law
+  - action_set_faculty_politics
+  - action_set_faculty_zavkhan
+  - action_set_faculty_east
+  - action_set_faculty_west
+  - validate_gpa_form
+  - action_ask_current_credit
+  - action_ask_current_score
+  - action_calculate_gpa
+  - action_send_location
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

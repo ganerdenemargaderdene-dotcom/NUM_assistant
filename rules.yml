@@ -1,0 +1,159 @@
+version: "3.1"
+
+rules:
+  - rule: Greet user
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Ask leave
+    steps:
+      - intent: ask_leave
+      - action: utter_ask_leave
+
+  - rule: Ask absence
+    steps:
+      - intent: ask_absence
+      - action: utter_ask_absence
+
+  - rule: Ask assignment grade
+    steps:
+      - intent: ask_assignment_grade
+      - action: utter_ask_assignment_grade
+
+  - rule: Ask lab grade
+    steps:
+      - intent: ask_lab_grade
+      - action: utter_ask_lab_grade
+
+  - rule: Ask course grade
+    steps:
+      - intent: ask_course_grade
+      - action: utter_ask_course_grade
+
+  - rule: Ask W I
+    steps:
+      - intent: ask_w_i
+      - action: utter_ask_w_i
+
+  - rule: Set language
+    steps:
+      - intent: set_language
+      - action: utter_language_set
+
+  - rule: Ask location
+    steps:
+      - intent: ask_location
+      - action: action_send_location
+
+  - rule: Choose place type (clarification)
+    steps:
+      - intent: choose_place_type
+      - action: action_send_location
+
+  - rule: Start tuition form
+    steps:
+      - intent: ask_tuition
+      - action: tuition_form
+      - active_loop: tuition_form
+
+  - rule: Submit tuition form
+    condition:
+      - active_loop: tuition_form
+    steps:
+      - action: tuition_form
+      - active_loop: null
+      - action: utter_submit
+      - action: action_calculate_tuition
+
+  - rule: Set admission group before 2024_2025
+    steps:
+      - intent: choose_admission_before_2024_2025
+      - action: action_set_admission_group_before_2024_2025
+
+  - rule: Set admission group 2024_2025
+    steps:
+      - intent: choose_admission_2024_2025
+      - action: action_set_admission_group_2024_2025
+
+  - rule: Set admission group 2025_2026
+    steps:
+      - intent: choose_admission_2025_2026
+      - action: action_set_admission_group_2025_2026
+
+  - rule: Set faculty science
+    steps:
+      - intent: choose_faculty_science
+      - action: action_set_faculty_science
+
+  - rule: Set faculty mtee
+    steps:
+      - intent: choose_faculty_mtee
+      - action: action_set_faculty_mtee
+
+  - rule: Set faculty engineering
+    steps:
+      - intent: choose_faculty_engineering
+      - action: action_set_faculty_engineering
+
+  - rule: Set faculty business
+    steps:
+      - intent: choose_faculty_business
+      - action: action_set_faculty_business
+
+  - rule: Set faculty law
+    steps:
+      - intent: choose_faculty_law
+      - action: action_set_faculty_law
+
+  - rule: Set faculty politics
+    steps:
+      - intent: choose_faculty_politics
+      - action: action_set_faculty_politics
+
+  - rule: Set faculty zavkhan
+    steps:
+      - intent: choose_faculty_zavkhan
+      - action: action_set_faculty_zavkhan
+
+  - rule: Set faculty east
+    steps:
+      - intent: choose_faculty_east
+      - action: action_set_faculty_east
+
+  - rule: Set faculty west
+    steps:
+      - intent: choose_faculty_west
+      - action: action_set_faculty_west
+
+  - rule: Start GPA form (ask)
+    steps:
+      - intent: ask_gpa
+      - action: gpa_form
+      - active_loop: gpa_form
+
+  - rule: Start GPA form (affirm)
+    steps:
+      - intent: affirm_mn
+      - action: gpa_form
+      - active_loop: gpa_form
+
+  - rule: Deny only when not in form
+    condition:
+      - active_loop: null
+    steps:
+      - intent: deny_mn
+      - action: utter_deny
+
+  - rule: Submit GPA form
+    condition:
+      - active_loop: gpa_form
+    steps:
+      - action: gpa_form
+      - active_loop: null
+      - action: action_calculate_gpa
